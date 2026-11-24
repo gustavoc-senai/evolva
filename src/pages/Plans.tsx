@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Layers, Check, ArrowUpRight } from "lucide-react";
 import { useWorkspace } from "../contexts/Workspace";
 import { useRows } from "../lib/hooks";
-import { supabase } from "../lib/supabase";
+import { rpc, supabase } from "../lib/supabase";
 import { date, errorText, statusLabel, today } from "../lib/utils";
 import {
   Heading,
