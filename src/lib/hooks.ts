@@ -46,8 +46,6 @@ export function useRows<T = any>(
         const primary =
           (
             {
-              evolva_plans: "code",
-              evolva_subscriptions: "workspace_id",
               evolva_student_notes: "student_id",
               evolva_reminder_preferences: "student_id",
             } as Record<string, string>

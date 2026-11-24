@@ -42,7 +42,7 @@ A integração está implementada, mas não foi publicada nem ativada no seu Sup
 
 Não é necessário configurar ambos os canais: os trabalhos de canais sem credenciais permanecem na fila. Há no máximo cinco itens por execução. Um mesmo treino/atendimento permite um lembrete por canal, sem reenvio automático. A configuração inicial não cria mensagens retroativas: o professor escolhe o que colocar na fila.
 
-Atendimentos entram para envio uma hora antes; se programados com menos antecedência, entram imediatamente. Treinos entram imediatamente. O processamento respeita o horário atualizado da agenda e verifica novamente vínculo, assinatura, publicação/cancelamento e autorização antes de obter cada lote. A autorização pode mudar após essa verificação, quando o envio já estiver em andamento.
+Atendimentos entram para envio uma hora antes; se programados com menos antecedência, entram imediatamente. Treinos entram imediatamente. O processamento respeita o horário atualizado da agenda e verifica novamente vínculo, publicação/cancelamento e autorização antes de obter cada lote. A autorização pode mudar após essa verificação, quando o envio já estiver em andamento.
 
 “Aceito pelo provedor” não é confirmação de entrega ou leitura; não há webhook de recibos. Erros de rede ou respostas ambíguas ficam como “Envio sem confirmação” e não são repetidos automaticamente, evitando duplicar WhatsApp. Trabalhos em processamento por mais de dez minutos também recebem esse estado. E-mails usam chave de idempotência no Resend. Se precisar reenviar um item incerto, confira antes o histórico do provedor; não altere a fila sem essa revisão.
 

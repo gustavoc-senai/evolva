@@ -340,9 +340,6 @@ export function Onboarding() {
             </ActionForm>
           </section>
         </div>
-        {ctx.isAdmin && (
-          <Link to="/app/plataforma">Abrir administração da plataforma →</Link>
-        )}
         <button
           className="secondary"
           onClick={() => void supabase.auth.signOut()}

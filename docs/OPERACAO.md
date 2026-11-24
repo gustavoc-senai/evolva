@@ -34,25 +34,11 @@ Conversas são por vínculo de aluno. Sem editar autoria. Atualização por cons
 
 Cobrança representa um valor a receber. O personal registra pagamentos que de fato recebeu fora da plataforma. Pagamento parcial deixa saldo em aberto. Recebimento excessivo é rejeitado. Estorno corrige o registro interno, reabre saldo e registra motivo; não devolve dinheiro no banco. Cobrança com recebimento ativo não pode ser cancelada.
 
-O aluno consulta suas cobranças e os recebimentos relacionados, mas não quita valores nem altera status. O financeiro deste acompanhamento é separado da assinatura que o personal paga para usar o Evolva.
+O aluno consulta suas cobranças e os recebimentos relacionados, mas não quita valores nem altera status. O financeiro do acompanhamento registra os valores cobrados pelo personal aos alunos.
 
-## Assinatura do SaaS
+## Planos e assinatura
 
-São 14 dias de teste no Essencial e limites de alunos ativos por plano. O checkout recorrente é feito pelo Mercado Pago; solicitação de plano não substitui o pagamento.
-
-Para ativar pagamentos em uma instalação existente:
-
-1. Execute `sql/012_assinaturas_mercadopago.sql` no SQL Editor do Supabase.
-2. Defina os Secrets das Edge Functions: `MERCADOPAGO_ACCESS_TOKEN`, `MERCADOPAGO_WEBHOOK_SECRET`, `EVOLVA_APP_URL` e `MERCADOPAGO_PRICE_START`, `MERCADOPAGO_PRICE_PRO`, `MERCADOPAGO_PRICE_STUDIO`. Informe os preços mensais em reais, com ponto decimal (por exemplo, `99.90`). Não use prefixo `VITE_`.
-3. Publique `create-subscription` e `mercadopago-webhook` com `supabase functions deploy create-subscription` e `supabase functions deploy mercadopago-webhook`.
-4. No painel de integrações do Mercado Pago, configure a URL `https://SEU-PROJETO.supabase.co/functions/v1/mercadopago-webhook` para os eventos `subscription_preapproval` e `subscription_authorized_payment`; copie a chave secreta de Webhooks para `MERCADOPAGO_WEBHOOK_SECRET`.
-5. Faça um pagamento de teste com credenciais de teste do Mercado Pago. Só depois configure o Access Token de produção e os preços aprovados.
-
-O checkout usa o e-mail da conta autenticada e cria uma assinatura mensal em BRL. A Edge Function aceita somente o proprietário do espaço, mantém o Access Token fora do navegador e retorna o link hospedado no Mercado Pago. O webhook valida a assinatura HMAC e consulta o estado atual diretamente à API antes de alterar o plano. O primeiro pagamento processado ativa o espaço; pausas/cancelamentos suspendem. Pagamentos recorrentes processados renovam a validade. A integração não emite nota fiscal.
-
-O endpoint público do webhook não exige JWT do usuário, pois é chamado pelo Mercado Pago; a validação HMAC é obrigatória. Se o webhook não chegar, o acesso não será ativado automaticamente. A administração manual continua disponível como procedimento operacional.
-
-Plano vencido/suspenso bloqueia novos cadastros/prescrições/avaliações/eventos/cobranças, sessões/check-ins/mensagens e uploads. Dados anteriores permanecem acessíveis conforme o vínculo e a RLS. Revogação de acesso, confirmação de um atendimento existente e correção/registro financeiro de cobrança existente continuam possíveis. Perfil e notas internas podem ser atualizados.
+O Evolva nao oferece planos comerciais, cobranca recorrente ou limites de alunos. Os espacos podem continuar usando os recursos enquanto tiverem acesso a conta.
 
 ## Exportação e implantação
 

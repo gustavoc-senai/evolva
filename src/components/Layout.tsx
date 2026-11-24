@@ -19,7 +19,6 @@ import {
   Bell,
   Settings,
   Layers,
-  Shield,
   Menu,
   X,
   LogOut,
@@ -108,7 +107,7 @@ export default function Layout() {
         </section>
       </main>
     );
-  if (!ctx.access && !(ctx.isAdmin && location.pathname === "/app/plataforma"))
+  if (!ctx.access)
     return <Onboarding />;
   const trainer = ctx.access?.role === "TRAINER",
     links = trainer ? trainerLinks : studentLinks;
@@ -175,22 +174,10 @@ export default function Layout() {
               </NavLink>
             ))}
           <span className="nav-label">MEU ESPAÇO</span>
-          {trainer && (
-            <NavLink to="/app/assinatura">
-              <Layers size={19} />
-              Assinatura
-            </NavLink>
-          )}
           <NavLink to="/app/configuracoes">
             <Settings size={19} />
             Configurações
           </NavLink>
-          {ctx.isAdmin && (
-            <NavLink to="/app/plataforma">
-              <Shield size={19} />
-              Plataforma
-            </NavLink>
-          )}
         </nav>
         <div className="sidebar-bottom">
           <span className="avatar">
@@ -238,12 +225,12 @@ export default function Layout() {
             <span className="breadcrumb">
               Meu espaço <span>/</span>{" "}
               <strong>
-                {({"/app/configuracoes":"Configurações","/app/notificacoes":"Notificações","/app/assinatura":"Assinatura","/app/plataforma":"Plataforma"} as Record<string,string>)[location.pathname] || [...links].filter(([path])=>path!=="/app"&&location.pathname.startsWith(path)).sort((a,b)=>b[0].length-a[0].length)[0]?.[1] || (trainer?"Visão geral":"Meu espaço")}
+                {({"/app/configuracoes":"Configurações","/app/notificacoes":"Notificações",} as Record<string,string>)[location.pathname] || [...links].filter(([path])=>path!=="/app"&&location.pathname.startsWith(path)).sort((a,b)=>b[0].length-a[0].length)[0]?.[1] || (trainer?"Visão geral":"Meu espaço")}
               </strong>
             </span>
           </div>
           <div className="topbar-actions">
-            <QuickNavigation trainer={trainer} admin={ctx.isAdmin} />
+            <QuickNavigation trainer={trainer} />
             <ThemeToggle />
             <button
               className="icon secondary"

@@ -15,10 +15,6 @@ A migração `008_recursos_avancados.sql` acrescenta `video_path` aos exercício
 | evolva_sessions | Sessão registrada e identificador de reenvio |
 | evolva_set_logs | Séries realizadas, repetições e carga |
 | evolva_checkins | Registro diário subjetivo do aluno |
-| evolva_plans | Capacidade por plano |
-| evolva_subscriptions | Situação e validade do espaço |
-| evolva_platform_admins | Contas administrativas concedidas pelo servidor |
-| evolva_plan_requests | Solicitações de mudança de plano |
 | evolva_assessments | Medidas, observações e compartilhamento |
 | evolva_student_notes | Anotações internas do personal |
 | evolva_events | Agenda e situação dos atendimentos |
@@ -32,17 +28,17 @@ A migração `008_recursos_avancados.sql` acrescenta `video_path` aos exercício
 
 Todas têm RLS habilitada. Leitura é permitida por políticas; escrita direta do navegador é revogada. Funções SECURITY DEFINER verificam identidade, titularidade, vínculo e limites, com search_path fixo. Metadados editáveis de Auth não concedem papel administrativo.
 
-As referências compostas impedem misturar aluno, treino, sessão e itens de espaços diferentes. Dados internos ficam separados dos dados compartilháveis. Planos e papel de administrador não podem ser alterados pelo próprio personal.
 
 ## Scripts
 
 - `INSTALAR_COMPLETO.sql`: instalação única, concatenando migrações na ordem correta.
 - `001_fundacao.sql`: primeira etapa (preservada).
 - `002_verificar.sql`: verificação da primeira etapa.
-- `003_aplicacao_completa.sql`: módulos operacionais, financeiro e planos.
+- `003_aplicacao_completa.sql`: módulos operacionais e financeiro.
 - `004_storage.sql`: bucket privado e políticas de arquivos.
 - `005_treinos_e_operacao.sql`: editor idempotente e confirmação de agenda.
-- `006_limites_e_verificacao.sql`: regras de plano para registros do aluno.
+- `006_limites_e_verificacao.sql`: verificações do banco.
 - `007_verificar_completo.sql`: verificação final.
+- `013_remover_planos.sql`: removes plan tables and access limits from an existing installation.
 
 A tabela storage.objects pertence ao Supabase Storage; o instalador cria políticas, não recria sua estrutura. O serviço Auth também não é recriado em produção. Os testes possuem substitutos locais mínimos desses serviços para verificar o PostgreSQL.

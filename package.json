@@ -12,7 +12,6 @@
     "test:ui": "vitest run",
     "test": "npm run test:database && npm run test:ui",
     "format": "prettier --write src",
-    "admin:grant": "node --env-file=.env.server scripts/grant-admin.mjs",
     "demo:seed": "node --env-file=.env.server scripts/seed-demo.mjs"
   },
   "dependencies": {

@@ -25,7 +25,7 @@ export default function Settings() {
         description="Sua identidade profissional e as preferências de acesso."
       />
       <Feedback error={profile.error || audit.error} />
-      {(ctx.access?.role === "TRAINER" || ctx.isAdmin) && <SetupStatus />}
+      {ctx.access?.role === "TRAINER" && <SetupStatus />}
       <div className="tabs">
         <button
           className={tab === "profile" ? "active" : ""}

@@ -5,10 +5,8 @@ import { Modal } from "./UI";
 
 export default function QuickNavigation({
   trainer,
-  admin,
 }: {
   trainer: boolean;
-  admin: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -41,15 +39,11 @@ export default function QuickNavigation({
           ["Exercícios", "/app/exercicios", "Sua biblioteca de movimentos"],
           ["Avaliações", "/app/avaliacoes", "Medidas e acompanhamento"],
           ["Relatórios", "/app/relatorios", "Resultados e exportações"],
-          ["Assinatura", "/app/assinatura", "Plano e capacidade do espaço"],
         ]
       : [
           ["Minha evolução", "/app/evolucao", "Histórico e avaliações"],
           ["Check-in", "/app/checkin", "Registre como você está hoje"],
         ]),
-    ...(admin
-      ? [["Plataforma", "/app/plataforma", "Administração do Evolva"]]
-      : []),
   ];
   const normalize = (text: string) =>
     text

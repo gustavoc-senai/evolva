@@ -42,10 +42,6 @@ const Messages = lazy(() => import("./pages/Messages"));
 const Finance = lazy(() => import("./pages/Finance"));
 const Reports = lazy(() => import("./pages/Reports"));
 const Settings = lazy(() => import("./pages/Settings"));
-const Plans = lazy(() => import("./pages/Plans"));
-const Platform = lazy(() =>
-  import("./pages/Plans").then((m) => ({ default: m.Platform })),
-);
 const Notifications = lazy(() => import("./pages/Notifications"));
 const Templates = lazy(() => import("./pages/Templates"));
 const Reminders = lazy(() => import("./pages/Reminders"));
@@ -106,7 +102,6 @@ export default function App() {
             <Route path="notificacoes" element={<Notifications />} />
             <Route path="lembretes" element={<Reminders />} />
             <Route path="rotina" element={<WeeklySchedule />} />
-            <Route path="plataforma" element={<Platform />} />
             <Route element={<RoleGate role="TRAINER" />}>
               <Route path="modelos" element={<Templates />} />
               <Route path="alunos" element={<Students />} />
@@ -115,7 +110,6 @@ export default function App() {
               <Route path="treinos/novo" element={<WorkoutBuilder />} />
               <Route path="avaliacoes" element={<Assessments />} />
               <Route path="relatorios" element={<Reports />} />
-              <Route path="assinatura" element={<Plans />} />
             </Route>
             <Route element={<RoleGate role="STUDENT" />}>
               <Route path="treinos/:id/executar" element={<Session />} />

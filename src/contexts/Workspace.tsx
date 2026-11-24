@@ -9,7 +9,6 @@ const Context = createContext<{
   access: Access | null;
   loading: boolean;
   error: string;
-  isAdmin: boolean;
   select: (key: string) => void;
   reload: () => void;
 }>({
@@ -17,7 +16,6 @@ const Context = createContext<{
   access: null,
   loading: true,
   error: "",
-  isAdmin: false,
   select: () => {},
   reload: () => {},
 });
@@ -27,12 +25,10 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
     [selected, setSelected] = useState(""),
     [loading, setLoading] = useState(true),
     [error, setError] = useState(""),
-    [isAdmin, setAdmin] = useState(false),
     [version, setVersion] = useState(0);
   useEffect(() => {
     let active = true;
     setAccesses([]);
-    setAdmin(false);
     setError("");
     if (!user) {
       setLoading(false);
@@ -46,13 +42,11 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
         .select("*")
         .eq("account_id", user.id)
         .eq("active", true),
-      supabase.rpc("evolva_is_admin"),
     ])
-      .then(([w, s, admin]) => {
+      .then(([w, s]) => {
         if (!active) return;
         if (w.error) throw w.error;
         if (s.error) throw s.error;
-        if (admin.error) throw admin.error;
         const spaces = (w.data ?? []) as Workspace[],
           students = (s.data ?? []) as Student[];
         const all: Access[] = spaces.flatMap<Access>((workspace) =>
@@ -68,7 +62,6 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
                 })),
         );
         setAccesses(all);
-        setAdmin(Boolean(admin.data));
         let saved = "";
         try {
           saved = localStorage.getItem("evolva-workspace:" + user.id) || "";
@@ -106,7 +99,6 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
         access,
         loading,
         error,
-        isAdmin,
         select,
         reload: () => setVersion((v) => v + 1),
       }}

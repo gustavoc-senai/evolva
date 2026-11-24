@@ -12,17 +12,13 @@ Cria seu espaço profissional, cadastra alunos, registra objetivos e avaliaçõe
 
 Recebe convite e usa uma conta individual. Consulta a prescrição pelo celular, registra séries/repetições/cargas, usa o timer e envia observações. Consulta avaliações compartilhadas, fotos, agenda, cobranças e mensagens. Pode estar vinculado a mais de um personal, com acompanhamento separado.
 
-## Operador da plataforma
-
-Gerencia os espaços, capacidades dos planos, validade e solicitações. Seu painel não concede leitura das avaliações/fotos/mensagens dos clientes de outros profissionais. A assinatura do próprio SaaS é independente do financeiro que cada personal controla com seus alunos.
-
 ## Identidade
 
 Interface clara com menu verde profundo, detalhes em verde-lima, tipografia Manrope/DM Sans e Lucide React. Painel do personal com dados reais e atalhos. Portal do aluno orientado a celular, com navegação inferior e controles de registro grandes.
 
 ## Razão para voltar ao produto
 
-A proposta comercial a validar é a continuidade do acompanhamento: o aluno consulta e registra, e o personal encontra o contexto no próximo atendimento. Não há promessa de ganho financeiro, melhora física ou adesão automática. Preços comerciais devem ser definidos e testados com profissionais; a aplicação já permite administrar capacidade e validade dos planos.
+A proposta do Evolva e apoiar a continuidade do acompanhamento entre profissional e aluno. A plataforma nao oferece planos pagos nem limites por plano.
 
 ## O que esta versão não afirma fazer
 
