@@ -1,0 +1,8 @@
+[functions.send-reminders]
+verify_jwt = false
+
+[functions.create-subscription]
+verify_jwt = true
+
+[functions.mercadopago-webhook]
+verify_jwt = false

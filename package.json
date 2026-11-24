@@ -1,0 +1,38 @@
+{
+  "name": "evolva",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "setup:check": "node scripts/check-setup.mjs",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test:database": "node tests/database.mjs",
+    "test:ui": "vitest run",
+    "test": "npm run test:database && npm run test:ui",
+    "format": "prettier --write src",
+    "admin:grant": "node --env-file=.env.server scripts/grant-admin.mjs",
+    "demo:seed": "node --env-file=.env.server scripts/seed-demo.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.0.0",
+    "lucide-react": "^1.71.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.0.0"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.16",
+    "@testing-library/react": "^16.3.3",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^26.1.0",
+    "prettier": "^3.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "~5.7.3",
+    "vite": "^6.0.0",
+    "vitest": "^3.2.7"
+  }
+}
