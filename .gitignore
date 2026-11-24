@@ -5,3 +5,4 @@ dist
 !.env.example
 !.env.server.example
 *.tsbuildinfo
+supabase/.temp/
